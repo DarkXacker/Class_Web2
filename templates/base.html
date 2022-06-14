@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9-"A"</title>
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <!-- LOGO -->
+        <div class="logo">
+            <a href="{% url 'home' %}" style="color: #fff;">
+                {% if user.profile_pic %}
+                    <img src="{{ user.profile_pic.url }}" alt="" style="width: 50px; height: 50px; border-radius: 50%;">    
+                {% endif %}
+
+                {{ user.username }}
+            </a>
+        </div>
+            <!-- NAVIGATION MENU -->
+            <ul class="nav-links">
+              <!-- USING CHECKBOX HACK -->
+              <input type="checkbox" id="checkbox_toggle" />
+              <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+              <!-- NAVIGATION MENUS -->
+              
+              <div class="menu">
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
+                    <li class="services">
+                        <a href="/">Sinf haqida</a>    
+                        <!-- DROPDOWN MENU -->
+                        <ul class="dropdown">
+                            <li><a href="{% url 'pupil_list' %}">O'quvchilar</a></li>
+                            <li><a href="{% url 'olimp_list' %}">Musobaqalar</a></li>
+                        </ul>
+                    </li>
+                    <li class="services">
+                        <a href="/">Hisobim</a>    
+                        <!-- DROPDOWN MENU -->
+                        <ul class="dropdown">
+                        <li><a href="{% url 'settings' %}">Kabinet</a></li>
+                        <li><a href="{% url 'password_change' %}">Boshqa Parol</a></li>
+                        <li><a href="{% url 'logout' %}">Chiqish </a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/"></a></li>
+                    <li><a href="/"></a></li>
+
+                {% else %}
+                    <li><a href="{% url 'login' %}">Kirish</a></li>
+                    <li><a href="{% url 'signup' %}">Ro'yxatdan o'tish</a></li>
+
+                {% endif %}
+              </div>
+            </ul>
+        </nav>
+
+        <script>
+            console.log("Dilafro'z men seni Sevaman ❤️❤️❤️❤️❤️❤️ !! Sunnatillo.")
+            console.log()
+
+            console.log("  ❤️❤️❤️❤️       ❤️❤️❤️❤️           💙💙💙   💚       ❤️❤️❤️❤️  🖤         🖤     💜💜💜💜💜                     ")
+            console.log(" ❤️       ❤️     ❤️        ❤️           💙      💚       ❤️     ❤️    🖤     🖤       💜                               ")  
+            console.log(" ❤️        ❤️   ❤️         ❤️           💙      💚       ❤️     ❤️      🖤 🖤         💜                               ")
+            console.log(" ❤️         ❤️ ❤️          ❤️         💙💙💙   💚💚💚  ❤️❤️❤️❤️        🖤            💜💜💜💜💜                    ")
+            console.log(" ❤️           ❤️           ❤️                                                             💜                               ")
+            console.log("  ❤️                       ❤️                                                              💜                              ")
+            console.log("   ❤️                     ❤️                                                               💜                              ")
+            console.log("    ❤️                   ❤️                                                                💜💜💜💜💜                    ")
+            console.log("     ❤️                 ❤️                                 You Dilafro'z !!!                                               ")
+            console.log("      ❤️               ❤️                                                                                                  ")
+            console.log("       ❤️             ❤️                                                                                                   ")
+            console.log("        ❤️           ❤️                                                                                                    ")
+            console.log("         ❤️         ❤️                                                                                                     ")
+            console.log("          ❤️       ❤️                                                                                                      ")
+            console.log("           ❤️     ❤️                                                                                                       ")
+            console.log("            ❤️   ❤️                                                                                                        ")
+            console.log("              ❤️❤️                                                                                                         ")
+            console.log("               ❤️                                                                                                          ")
+            console.log('Ming bor-a uzr JS dan xabarim yo\'q shunng uchun xunuk chiqqan. Dilafro\'z men seni Sevaman ! (-_-)')
+        </script>
+
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+        {% block content %}
+        {% endblock content %}
+</body>
+</html>

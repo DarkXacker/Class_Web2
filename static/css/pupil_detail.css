@@ -1,0 +1,13 @@
+a {
+    text-decoration: none;
+}
+.about-pupil {
+    position: relative;
+    left: 10px;
+}
+
+.img {
+    width: 30%;
+    height: 900px;
+    float: left;
+}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/comment.css' %}">
+    {% if user.is_authenticated %}
+        <center>
+            <h1>{{ object.nomi }}</h1>
+
+            {% if object.rasmi %}
+                <img src="{{ object.rasmi.url }}" alt="">
+            {% endif %}
+    
+        </center>
+
+        <!-- Text -->
+            <p style="position: relative; right: auto;">{{ object.sharti|safe }}</p>
+        <!-- END Text -->
+
+        <center>
+            {% if object.videofile %}
+                <h1>{{ object.name }}</h1>
+                <video width='800' controls>
+                    <source src='{{ object.videofile.url }}' type='video/mp4'>
+                    Your browser does not support the video tag.
+                </video>
+            {% endif %}
+            <br><br>
+            <a href="{% url 'olimp_list' %}" class="btn btn-primary">Ortga qaytish</a>
+
+            {% if user.is_superuser %}
+                <a href="{% url 'olimp_edit' object.pk %}" class="btn btn-warning">Tahrirlash</a>
+                <a href="{% url 'olimp_delete' object.pk %}" class="btn btn-danger">O'chirish</a>
+            {% endif %}
+            
+            <br><br>
+            <!-- COMMENTS  -->
+            <h2>O'z fikringizni yoki savollaringizni qoldiring</h2>
+            
+            <div id="comments_section">
+    
+                <!-- Add to comment -->
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ comment_form }}
+                        <button class="btn btn-info" type="submit">Izoh qo'shish <i class="fas fa-comments"></i></button>
+                    </div>
+                </form>
+
+                <!-- End add to comment -->
+                <hr>
+                
+                <!-- All comments -->
+                <ul class="comment">
+                    <h1>Izohlar</h1>
+                    {% for comment in comments %}
+                        <li>
+                            <div>
+                                <hr>
+                                <span>
+                                    <img src="{{ comment.author.profile_pic.url }}" alt="" class="comment-img">
+                                    <h3 class="text-info">{{ comment.author }}</h3>
+                                    <h4 class="text-muted">{{ comment.date_posted }}</h4>
+                                </span>
+                                <p class="comment-data">
+                                    {{ comment.content }}
+                                </p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <!-- End all comments -->
+            </div>
+
+            <!-- End COMMENTS  -->
+        </center>
+    {% endif %}
+{% endblock content %}

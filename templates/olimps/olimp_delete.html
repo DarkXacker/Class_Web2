@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_superuser %}
+        <form  method="post" enctype="multipart/form-data">{% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+
+            <button type="submit">O'chirish</button>
+            <a href="{% url 'olimp_detail' object.pk %}">Ortga qaytish</a>
+        </form>
+    {% endif %}
+
+{% endblock content %}

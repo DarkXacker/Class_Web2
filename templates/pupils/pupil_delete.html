@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_superuser %}
+        <div style="padding-top: 100px;"></div>
+        <center>
+            <h3>{{ object.ism }} shu o'quvchini o'chirmoqchimisiz</h3>
+            
+            <form  method="post" enctype="multipart/form-data">{% csrf_token %}
+                {{ form.media }}
+                {{ form.as_p }}
+                
+                <button type="submit">O'chirish</button>
+                <a href="{% url 'pupil_detail' object.pk %}">Ortga qaytish</a>
+            </form>
+        </center>    
+    {% endif %}
+
+{% endblock content %}

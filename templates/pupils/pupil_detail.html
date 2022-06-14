@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/pupil_detail.css' %}">
+    {% if user.is_authenticated %}
+
+        <div class="container">
+            <div class="detail-image">
+                {% if object.rasmi %}
+                    <img src="{{ object.rasmi.url }}" alt="Rasm bor" class="img">
+                {% endif %}
+            </div>
+    
+            <div class="about-pupil">
+                <div class="name-date">
+                    <h1 class="name">{{ object.familya.capitalize }} {{ object.ism.capitalize }} {{ object.sharif.capitalize }}</h1>
+                    <p class="date"><b>Tug'ilgan sanasi: <i>{{ object.tug_kun }}</i></b></p>
+                </div>
+
+                <h2 class="telephone__number"><i>Telefon raqam:</i> <b>+998 {{ object.telefon }}</b></h2>
+                <p>{{ object.haqida | safe }}</p>
+                
+                {% if user.is_superuser %}
+                    <a href="{% url 'pupil_edit' object.pk %}" class="btn btn-warning">Tahrirlash</a>
+                    <a href="{% url 'pupil_delete' object.pk %}" class="btn btn-danger">O'chirish</a>
+                {% endif %}
+
+                <a href="{% url 'pupil_list' %}" class="btn btn-primary">Orqaga</a>
+
+            </div>
+        </div>
+
+    {% endif %}
+{% endblock content %}

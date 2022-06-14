@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/pupils_list.css' %}">
+    
+    <style>
+        .card {
+            position: relative;
+            float: left;
+            height: 400px;
+        }
+
+    .card-img-top {
+        height: 100%;
+    }
+    
+    </style>
+
+    {% if user.is_authenticated %}
+        {% for pupil in object_list %}
+            <div class="card" style="width: 25rem; height: 800px;">
+                {% if pupil.rasmi %}
+                    <img src="{{ pupil.rasmi.url }}" class="card-img-top" alt="...">
+                {% endif %}
+                <div class="card-body">
+                  <h5 class="card-title">{{ pupil.familya.capitalize }} {{ pupil.ism.capitalize }} {{ pupil.sharif.capitalize }}</h5>
+                  <p class="card-text"><i>Telefon raqam:</i> <b>+998 {{ pupil.telefon }}</b></p>
+                  <a href="{% url 'pupil_detail' pupil.pk %}" class="btn btn-primary">Batafsil</a>
+                </div>
+              </div>
+        {% endfor %}
+
+    {% endif %}
+
+{% endblock content %}

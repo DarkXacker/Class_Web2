@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+
+        {% for olimp in object_list %}
+            <div class="card" style="width: 100%rem;">
+                {% if olimp.rasmi %}
+                    <img src="{{ olimp.rasmi.url }}" alt="">
+                {% endif %}
+                
+                <div class="card-body">
+                    <center>
+                        <h5 class="card-title">{{ olimp.nomi.capitalize }} {{ pupil.ism.capitalize }} {{ pupil.sharif.capitalize }}</h5>
+                        <p class="card-text"><b>Joylashtirildi: <i>{{ olimp.date }}</i> </b></p>
+                        <p><a href="{% url 'olimp_detail' olimp.pk %}" class="btn btn-outline-warning">Batafsil</a></p>
+                    </center>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+{% endblock content %}
