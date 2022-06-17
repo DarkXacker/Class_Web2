@@ -41,12 +41,15 @@ INSTALLED_APPS = [
     'crispy_forms',
     'ckeditor',
     'ckeditor_uploader',
+    'embed_video',
     
     # my apps
     'accounts',
     'pages',
     'pupils',
     'olimps',
+    'chat',
+    'you_tube',
 ]
 
 MIDDLEWARE = [

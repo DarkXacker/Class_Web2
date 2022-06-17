@@ -27,6 +27,9 @@ urlpatterns = [
     path('pupils/', include('pupils.urls')),
     path('olimps/', include('olimps.urls')),
 
+    path('chat/', include('chat.urls')),
+    path('you_tube/videos/', include('you_tube.urls')),
+
 ] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
 
 if settings.DEBUG:
