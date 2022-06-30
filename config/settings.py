@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'embed_video',
+    'django_social_share',
     
     # my apps
     'accounts',
@@ -141,16 +142,6 @@ MEDIA_URL= "/media/"
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
-# EMAIL BACKEND
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# DEFAULT_FROM_EMAIL = 'admin@gmail.com'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'username'
-# EMAIL_HOST_PASSWORD = 'password'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
@@ -170,9 +161,10 @@ CKEDITOR_CONFIGS = {
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_RESTRICT_BY_USER = True
 
-#STATIC
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SITE_ID = 1

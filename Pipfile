@@ -1,20 +1,11 @@
-[[source]]
-url = "https://pypi.org/simple"
-verify_ssl = true
-name = "pypi"
-
-[packages]
-django = "*"
-django-crispy-forms = "*"
-django-ckeditor = "*"
-pillow = "*"
-django-private-chat2 = "*"
-channels = "*"
-stream-chat = "*"
-django-cors-headers = "*"
-django-embed-video = "*"
-
-[dev-packages]
-
-[requires]
-python_version = "3.10"
+django
+django-crispy-forms
+django-ckeditor
+pillow
+django-private-chat2
+channels
+stream-chat
+django-cors-headers
+django-embed-video
+django-allauth
+django-social-share

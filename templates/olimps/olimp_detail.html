@@ -1,8 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load social_share %}
 {% load crispy_forms_tags %}
 
 {% block content %}
+
+    <style>
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+        
+        a:hover {
+            color: #000;
+        }
+        .send-post {
+            width: 200px;
+        }
+        
+        .icon-img {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+
     <link rel="stylesheet" href="{% static 'css/comment.css' %}">
     {% if user.is_authenticated %}
         <center>
@@ -34,18 +55,23 @@
                 <a href="{% url 'olimp_delete' object.pk %}" class="btn btn-danger">O'chirish</a>
             {% endif %}
             
+            <div class="container">
+                <br>
+                <button class="btn btn-light send-post">{% post_to_facebook object_or_url "Post to Facebook!" %}<img src="{% static 'icons/facebook-brands.svg' %}" alt="" class="icon-img"></button>
+                <button class="btn btn-light send-post">{% post_to_telegram '{{ object.nomi }}' object_or_url '' %}<img src="{% static 'icons/telegram-brands.svg' %}" alt="" class="icon-img"></button>
+            </div>
+
             <br><br>
             <!-- COMMENTS  -->
             <h2>O'z fikringizni yoki savollaringizni qoldiring</h2>
             
             <div id="comments_section">
-    
                 <!-- Add to comment -->
                 <form method="POST">
                     {% csrf_token %}
                     <div class="form-group">
                         {{ comment_form }}
-                        <button class="btn btn-info" type="submit">Izoh qo'shish <i class="fas fa-comments"></i></button>
+                        <button class="btn btn-info" type="submit">Izoh qo'shish</button>
                     </div>
                 </form>
 
@@ -60,7 +86,11 @@
                             <div>
                                 <hr>
                                 <span>
-                                    <img src="{{ comment.author.profile_pic.url }}" alt="" class="comment-img">
+                                    {% if comment.author.profile_pic %}
+                                        <img src="{{ comment.author.profile_pic.url }}" alt="" class="comment-img">
+                                    {% else %}
+                                        <img src="{% static 'images/non-image.jpg' %}" alt="" class="comment-img">
+                                    {% endif %}
                                     <h3 class="text-info">{{ comment.author }}</h3>
                                     <h4 class="text-muted">{{ comment.date_posted }}</h4>
                                 </span>

@@ -9,7 +9,8 @@
     <form method="post">{% csrf_token %}
         {{ form|crispy }} 
         <br>
+
         <button class="btn btn-success ml-2" type="submit">Kirish</button>
     </form>
-
+    
 {% endblock content %}

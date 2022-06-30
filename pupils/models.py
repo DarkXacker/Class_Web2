@@ -19,8 +19,6 @@ class Pupil(models.Model):
         on_delete=models.CASCADE,
     )
 
-    # rasm = models.ImageField()
-
     def __str__(self):
         return self.ism
 
